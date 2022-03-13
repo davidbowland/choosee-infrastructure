@@ -303,7 +303,7 @@ Resources:
 
   # Deployment users
 
-  ChooseeApiUser:
+  SessionApiUser:
     Type: AWS::IAM::User
     Properties:
       Policies:
