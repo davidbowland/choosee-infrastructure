@@ -1,12 +1,19 @@
 {
   "name": "choosee-infrastructure",
   "version": "1.2.0",
-  "private": true,
   "description": "Infrastructure for choosee project",
   "author": "David Bowland",
   "engines": {
     "node": "^16.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidbowland/choosee-infrastructure.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidbowland/choosee-infrastructure/issues"
+  },
+  "homepage": "https://github.com/davidbowland/choosee-infrastructure#readme",
   "scripts": {
     "deploy": "./deploy.sh",
     "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install ; fi",
@@ -22,13 +29,5 @@
     "**/*": [
       "prettier --write --ignore-unknown"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/davidbowland/choosee-infrastructure.git"
-  },
-  "bugs": {
-    "url": "https://github.com/davidbowland/choosee-infrastructure/issues"
-  },
-  "homepage": "https://github.com/davidbowland/choosee-infrastructure#readme"
+  }
 }
