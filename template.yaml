@@ -303,6 +303,27 @@ Resources:
 
   # Deployment users
 
+  MapsApiUser:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: !Sub
+            - '${Project}-pipeline'
+            - Project: !FindInMap [EnvironmentMap, !Ref Environment, project]
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: 'sts:AssumeRole'
+                Resource:
+                  - !Sub 'arn:aws:iam::${AWS::AccountId}:role/choosee-pipeline'
+                  - !Sub 'arn:aws:iam::${AWS::AccountId}:role/choosee-pipeline-test'
+      Tags:
+        - Key: 'created-by'
+          Value: 'choosee-infrastructure'
+        - Key: 'created-for'
+          Value: !FindInMap [EnvironmentMap, !Ref Environment, project]
+
   SessionApiUser:
     Type: AWS::IAM::User
     Properties:
