@@ -28,6 +28,7 @@ Resources:
       Tags:
         'created-by': 'choosee-infrastructure'
         'created-for': 'choosee'
+        'environment': !Ref Environment
 
 Outputs:
   PinpointId:
