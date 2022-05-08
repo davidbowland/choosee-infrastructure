@@ -61,6 +61,7 @@ Resources:
       SmsAuthenticationMessage: Your authentication code is {####}.
       SmsConfiguration:
         SnsCallerArn: !Sub '${CognitoSmsRole.Arn}'
+        SnsRegion: us-east-1
       SmsVerificationMessage: Your verification code is {####}.
       UsernameAttributes:
         - phone_number
