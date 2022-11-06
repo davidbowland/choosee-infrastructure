@@ -245,6 +245,7 @@ Resources:
               Service:
                 - cognito-idp.amazonaws.com
             Action: 'sts:AssumeRole'
+      PermissionsBoundary: !Sub 'arn:aws:iam::${AWS::AccountId}:policy/root-boundary'
       Policies:
         - PolicyName: !Sub
             - '${Project}-cognito'
