@@ -4,7 +4,7 @@
 set -e
 
 if [[ -z "$1" ]]; then
-  $(./scripts/assumeDeveloperRole.sh)
+  $(./scripts/assumeAdminRole.sh)
 fi
 
 # Deploy infrastructure
