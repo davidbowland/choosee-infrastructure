@@ -18,13 +18,13 @@
     "deploy": "./deploy.sh",
     "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install ; fi",
     "lint": "prettier --write .",
-    "update": "ncu -u && npm i && npm audit fix --audit-level=none && npm dedupe"
+    "update": "ncu --target minor --upgrade && npm audit fix --audit-level=none && npm dedupe"
   },
   "dependencies": {},
   "devDependencies": {
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1"
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3"
   },
   "lint-staged": {
     "**/*": [
