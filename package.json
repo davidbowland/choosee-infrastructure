@@ -4,7 +4,7 @@
   "description": "Infrastructure for choosee project",
   "author": "David Bowland",
   "engines": {
-    "node": "^18.0.0"
+    "node": "^20.0.0"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "homepage": "https://github.com/davidbowland/choosee-infrastructure#readme",
   "scripts": {
     "deploy": "./deploy.sh",
-    "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install ; fi",
+    "prepare": "husky install",
     "lint": "prettier --write .",
     "update": "ncu --target minor --upgrade && npm audit fix --audit-level=none && npm dedupe"
   },
