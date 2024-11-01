@@ -2,14 +2,15 @@ name: Pipeline
 
 env:
   EAST_1_TEMPLATE_NAME: template-east-1.yaml
-  TEMPLATE_NAME: template.yaml
-  TESTING_PIPELINE_EXECUTION_ROLE: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/full-access
-  TESTING_STACK_NAME: choosee-infrastructure-test
-  TESTING_EAST_1_STACK_NAME: choosee-infrastructure-east-1-test
+  GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+  HUSKY: 0
+  PROD_EAST_1_STACK_NAME: choosee-infrastructure-east-1
   PROD_PIPELINE_EXECUTION_ROLE: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/full-access
   PROD_STACK_NAME: choosee-infrastructure
-  PROD_EAST_1_STACK_NAME: choosee-infrastructure-east-1
-  HUSKY: 0
+  TEMPLATE_NAME: template.yaml
+  TESTING_EAST_1_STACK_NAME: choosee-infrastructure-east-1-test
+  TESTING_PIPELINE_EXECUTION_ROLE: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/full-access
+  TESTING_STACK_NAME: choosee-infrastructure-test
 
 on: push
 
@@ -174,7 +175,7 @@ jobs:
           node-version: 20.x
       - name: Set git name and email
         run: |
-          git config --local user.email "dbowland1+bot@gmail.com"
+          git config --local user.email "${GIT_EMAIL}"
           git config --local user.name "github-actions[bot]"
       - name: Bump the minor version
         run: npm version minor
