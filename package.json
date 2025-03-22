@@ -4,7 +4,7 @@
   "description": "Infrastructure for choosee project",
   "author": "David Bowland",
   "engines": {
-    "node": "^20.0.0"
+    "node": "^22.0.0"
   },
   "repository": {
     "type": "git",
@@ -21,9 +21,9 @@
     "update": "ncu --target minor --upgrade && npm audit fix --audit-level=none && npm dedupe"
   },
   "devDependencies": {
-    "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
-    "prettier": "^3.3.3"
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.5.3"
   },
   "lint-staged": {
     "**/*": [
