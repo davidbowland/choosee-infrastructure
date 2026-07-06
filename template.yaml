@@ -299,6 +299,17 @@ Resources:
                   - 'arn:aws:s3:::choosee-ui-test'
                   - !Sub 'arn:aws:s3:::${LambdaBucket}/*'
                   - !Sub 'arn:aws:s3:::${LambdaBucket}'
+              - Effect: Allow
+                Action: 'ssm:GetParameter'
+                Resource:
+                  - !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/choosee/google-client-id'
+                  - !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/choosee/google-client-secret'
+              - Effect: Allow
+                Action: 'kms:Decrypt'
+                Resource: '*'
+                Condition:
+                  StringEquals:
+                    'kms:ViaService': !Sub 'ssm.${AWS::Region}.amazonaws.com'
       RoleName: !FindInMap [EnvironmentMap, !Ref Environment, roleNamePipeline]
       Tags:
         - Key: 'created-by'
