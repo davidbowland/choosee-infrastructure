@@ -1,15 +1,9 @@
 name: Pipeline
 
 env:
-  EAST_1_TEMPLATE_NAME: template-east-1.yaml
-  GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
   HUSKY: 0
-  PROD_EAST_1_STACK_NAME: choosee-infrastructure-east-1
-  PROD_PIPELINE_EXECUTION_ROLE: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/full-access
   PROD_STACK_NAME: choosee-infrastructure
   TEMPLATE_NAME: template.yaml
-  TESTING_EAST_1_STACK_NAME: choosee-infrastructure-east-1-test
-  TESTING_PIPELINE_EXECUTION_ROLE: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/full-access
   TESTING_STACK_NAME: choosee-infrastructure-test
 
 on: push
@@ -38,7 +32,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-          role-to-assume: ${{ env.TESTING_PIPELINE_EXECUTION_ROLE }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/full-access
           role-session-name: feature-deployment
           role-duration-seconds: 3600
           role-skip-session-tagging: true
@@ -72,7 +66,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-          role-to-assume: ${{ env.TESTING_PIPELINE_EXECUTION_ROLE }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/full-access
           role-session-name: testing-deployment
           role-duration-seconds: 3600
           role-skip-session-tagging: true
@@ -107,7 +101,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-          role-to-assume: ${{ env.PROD_PIPELINE_EXECUTION_ROLE }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/full-access
           role-session-name: prod-deployment
           role-duration-seconds: 3600
           role-skip-session-tagging: true
@@ -124,6 +118,8 @@ jobs:
     name: Bump the version number and tag the commit
     needs: [deploy-production]
     runs-on: ubuntu-latest
+    env:
+      GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
     steps:
       - name: Checkout latest code
         uses: actions/checkout@v6
