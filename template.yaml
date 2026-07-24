@@ -302,8 +302,8 @@ Resources:
               - Effect: Allow
                 Action: 'ssm:GetParameter'
                 Resource:
-                  - !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/choosee/google-client-id'
-                  - !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/choosee/google-client-secret'
+                  - !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/choosee-api/*'
+                  - !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/choosee-api-test/*'
               - Effect: Allow
                 Action: 'kms:Decrypt'
                 Resource: '*'
